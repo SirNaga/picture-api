@@ -1,5 +1,4 @@
 package com.example.pictureapi.UserController;
-import com.example.pictureapi.Greeting;
 import com.example.pictureapi.Repository.UserRepository;
 import com.example.pictureapi.dbModels.UserModel;
 import org.springframework.http.HttpStatus;
@@ -26,10 +25,6 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return new Greeting(counter.incrementAndGet(), String.format(template, name));
-    }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<UserModel> getAllUsers() {
