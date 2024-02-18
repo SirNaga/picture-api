@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/post")
@@ -53,6 +54,20 @@ public class PostController {
                 return new ResponseEntity<>(postRepository.save(exisitingPost), HttpStatus.ACCEPTED);
             }
             return new ResponseEntity<>(postRepository.save(newPost), HttpStatus.ACCEPTED);
+    }
+
+    @CrossOrigin
+    @PutMapping("/{id}")
+    ResponseEntity<PostModel> editPost(@RequestBody PostModel newPost, @PathVariable String id) {
+            LOG.info("Updating Post details with id:" + id);
+            return new ResponseEntity<>(postRepository.save(newPost), HttpStatus.ACCEPTED);
+    }
+
+    @CrossOrigin
+    @GetMapping("/{id}")
+    ResponseEntity<Optional<PostModel>> getPost(@PathVariable String id) {
+            LOG.info("find Post with id:" + id);
+            return new ResponseEntity<>(postRepository.findById(id), HttpStatus.ACCEPTED);
     }
 
 
